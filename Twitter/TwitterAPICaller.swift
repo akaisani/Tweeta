@@ -48,7 +48,6 @@ class TwitterAPICaller: BDBOAuth1SessionManager {
     }
     
     func getDictionariesRequest(url: String, parameters: [String:Any], success: @escaping ([NSDictionary]) -> (), failure: @escaping (Error) -> ()){
-        print(parameters)
         TwitterAPICaller.client?.get(url, parameters: parameters, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
             success(response as! [NSDictionary])
         }, failure: { (task: URLSessionDataTask?, error: Error) in
@@ -61,6 +60,50 @@ class TwitterAPICaller: BDBOAuth1SessionManager {
             success()
         }, failure: { (task: URLSessionDataTask?, error: Error) in
             failure(error)
+        })
+    }
+    
+    func fetchUserTimeline(for viewController: UIViewController, _ completion: @escaping ([Post]) -> Void) {
+        var posts = [Post]()
+        let timelineURL = "https://api.twitter.com/1.1/statuses/home_timeline.json"
+        self.getDictionariesRequest(url: timelineURL, parameters: [:], success: { (postDictionaries) in
+            guard let postDictionaries = postDictionaries as? [[String: Any]] else {
+                AlertControllerHelper.presentAlert(for: viewController, withTitle: "Error", withMessage: "Error parsing post data")
+                return
+            }
+            for postDictionary in postDictionaries {
+                guard let retweetCount = postDictionary["retweet_count"] as? Int, let postDate = postDictionary["created_at"] as? String, let content = postDictionary["text"] as? String, let favouriteCount = postDictionary["favorite_count"] as? Int else {
+                    
+                    AlertControllerHelper.presentAlert(for: viewController, withTitle: "Error", withMessage: "Error parsing post data")
+                    return
+                }
+                guard let userDictionary = postDictionary["user"] as? [String: Any] else {
+                    AlertControllerHelper.presentAlert(for: viewController, withTitle: "Error", withMessage: "Error parsing post data\nCould not get poster data.")
+                    return
+                }
+                guard let poster = userDictionary["name"] as? String, let posterID = userDictionary["screen_name"] as? String, let posterImageURL = userDictionary["profile_image_url_https"] as? String else {
+                    AlertControllerHelper.presentAlert(for: viewController, withTitle: "Error", withMessage: "Error parsing post data\nCould not get poster name or ID or image")
+                    return
+                }
+                let post = Post(poster: poster, posterID: posterID, content: content, postDate: postDate, retweetCount: retweetCount, favouriteCount: favouriteCount, imageURL: posterImageURL)
+                posts.append(post
+                )
+            }
+            
+            let dispatchGroup = DispatchGroup()
+            
+            for post in posts {
+                dispatchGroup.enter()
+                _ = post.posterImage
+                dispatchGroup.leave()
+            }
+            
+            dispatchGroup.notify(queue: .main, execute: {
+                completion(posts)
+            })
+            
+        }, failure: { (error) in
+            AlertControllerHelper.presentAlert(for: viewController, withTitle: "Error", withMessage: error.localizedDescription)
         })
     }
     

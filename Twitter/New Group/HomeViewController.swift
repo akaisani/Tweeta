@@ -16,66 +16,36 @@ class HomeViewController: UIViewController {
     var posts: [Post] = [Post]()
     
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+            #selector(HomeViewController.getTimelinePosts(_:)),
+                                 for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = UIColor.blue
+        
+        return refreshControl
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("here")
         // Do any additional setup after loading the view.
-        fetchUserTimeline()
+        
+        // adding uirefreshcontrol
+        self.postsTableView.addSubview(self.refreshControl)
+        
+        // gettings posts
+        getTimelinePosts()
     }
     
-    private func fetchUserTimeline() {
-        posts = []
-        let timelineURL = "https://api.twitter.com/1.1/statuses/home_timeline.json"
-        TwitterAPICaller.client?.getDictionariesRequest(url: timelineURL, parameters: [:], success: { (postDictionaries) in
-            guard let postDictionaries = postDictionaries as? [[String: Any]] else {
-                AlertControllerHelper.presentAlert(for: self, withTitle: "Error", withMessage: "Error parsing post data")
-                return
+    @objc func getTimelinePosts(_ refreshControl: UIRefreshControl? = nil) {
+        TwitterAPICaller.client?.fetchUserTimeline(for: self, { (posts) in
+            self.posts = posts
+            DispatchQueue.main.async {
+                self.postsTableView.reloadData()
+                self.refreshControl.endRefreshing()
             }
-            for postDictionary in postDictionaries {
-                guard let retweetCount = postDictionary["retweet_count"] as? Int, let postDate = postDictionary["created_at"] as? String, let content = postDictionary["text"] as? String, let favouriteCount = postDictionary["favorite_count"] as? Int else {
-                    
-                    AlertControllerHelper.presentAlert(for: self, withTitle: "Error", withMessage: "Error parsing post data")
-                    return
-                }
-                guard let userDictionary = postDictionary["user"] as? [String: Any] else {
-                    AlertControllerHelper.presentAlert(for: self, withTitle: "Error", withMessage: "Error parsing post data\nCould not get poster data.")
-                    return
-                }
-                guard let poster = userDictionary["name"] as? String, let posterID = userDictionary["screen_name"] as? String, let posterImageURL = userDictionary["profile_image_url_https"] as? String else {
-                    AlertControllerHelper.presentAlert(for: self, withTitle: "Error", withMessage: "Error parsing post data\nCould not get poster name or ID or image")
-                    return
-                }
-                let post = Post(poster: poster, posterID: posterID, content: content, postDate: postDate, retweetCount: retweetCount, favouriteCount: favouriteCount, imageURL: posterImageURL)
-                self.posts.append(post
-                )
-            }
-            
-            let dispatchGroup = DispatchGroup()
-            
-            for post in self.posts {
-                dispatchGroup.enter()
-                _ = post.posterImage
-                dispatchGroup.leave()
-            }
-            
-            dispatchGroup.notify(queue: .main, execute: {
-                DispatchQueue.main.async {
-                    // reload table view
-                    self.postsTableView.reloadData()
-                }
-            })
-            
-        }, failure: { (error) in
-            AlertControllerHelper.presentAlert(for: self, withTitle: "Error", withMessage: error.localizedDescription)
         })
     }
-    
-    
-
-    
-    
-    
-    
     
     @IBAction func didPressLogoutButton(_ sender: UIBarButtonItem) {
         TwitterAPICaller.client?.logout()
