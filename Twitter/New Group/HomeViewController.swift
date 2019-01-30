@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import DateToolsSwift
 
 class HomeViewController: UIViewController {
 
     
     @IBOutlet weak var postsTableView: UITableView!
     var posts: [Post] = [Post]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +71,9 @@ class HomeViewController: UIViewController {
     }
     
     
+
+    
+    
     
     
     
@@ -102,7 +107,7 @@ extension HomeViewController: UITableViewDataSource {
         
         cell.posterNameLabel.text = post.poster
         cell.posterIDLabel.text = post.posterID
-        cell.postDataLabel.text = post.postData
+        cell.postDataLabel.text = DateHelper.timeSincePost(for: post.postDate)
         cell.postContentLabel.text = post.content
         cell.retweetCountLabel.text = post.retweetCount
         cell.favouriteCountLabel.text = post.favouriteCount

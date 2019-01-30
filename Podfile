@@ -7,5 +7,5 @@ target 'Twitter' do
   use_frameworks!
   pod 'AFNetworking'
   pod 'BDBOAuth1Manager'
-  pod 'AlamofireImage'
+  pod 'DateToolsSwift'
 end

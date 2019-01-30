@@ -15,6 +15,7 @@
 		6EBCF54E21E71F9400451C03 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EBCF54D21E71F9400451C03 /* Launch Screen.storyboard */; };
 		A844366622000C5900F095DB /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = A844366522000C5900F095DB /* Post.swift */; };
 		A8443668220014EA00F095DB /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8443667220014EA00F095DB /* PostCell.swift */; };
+		A8659433220259F2003789BE /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8659432220259F2003789BE /* DateHelper.swift */; };
 		A8B5AB6321FFC8FF0062E73C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5AB6221FFC8FF0062E73C /* LoginViewController.swift */; };
 		A8B5AB6621FFCC490062E73C /* AlertControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5AB6521FFCC490062E73C /* AlertControllerHelper.swift */; };
 		A8B5AB6821FFCE880062E73C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5AB6721FFCE880062E73C /* HomeViewController.swift */; };
@@ -32,6 +33,7 @@
 		872C2D82F41D5A5D2A920E9E /* Pods_Twitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A844366522000C5900F095DB /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Post.swift; path = Twitter/Post.swift; sourceTree = SOURCE_ROOT; };
 		A8443667220014EA00F095DB /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		A8659432220259F2003789BE /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		A8B5AB6221FFC8FF0062E73C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A8B5AB6521FFCC490062E73C /* AlertControllerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertControllerHelper.swift; sourceTree = "<group>"; };
 		A8B5AB6721FFCE880062E73C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				6EBCF54D21E71F9400451C03 /* Launch Screen.storyboard */,
 				6EBCF52921DF07FC00451C03 /* Main.storyboard */,
 				A8443667220014EA00F095DB /* PostCell.swift */,
+				A8659432220259F2003789BE /* DateHelper.swift */,
 				A8B5AB6421FFC9040062E73C /* View Controllers */,
 				6EBCF54321E047A500451C03 /* TwitterAPICaller.swift */,
 				6EBCF52521DF07FC00451C03 /* AppDelegate.swift */,
@@ -207,16 +210,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Twitter/Pods-Twitter-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/BDBOAuth1Manager/BDBOAuth1Manager.framework",
+				"${BUILT_PRODUCTS_DIR}/DateToolsSwift/DateToolsSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BDBOAuth1Manager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateToolsSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -231,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8443668220014EA00F095DB /* PostCell.swift in Sources */,
+				A8659433220259F2003789BE /* DateHelper.swift in Sources */,
 				A8B5AB6821FFCE880062E73C /* HomeViewController.swift in Sources */,
 				A8B5AB6321FFC8FF0062E73C /* LoginViewController.swift in Sources */,
 				6EBCF54421E047A500451C03 /* TwitterAPICaller.swift in Sources */,

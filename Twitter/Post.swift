@@ -15,7 +15,7 @@ class Post {
     let content: String
     let retweetCount: String
     let favouriteCount: String
-    let postData: String
+    let postDate: String
     private let imageURL: String
     private var cachedImage: UIImage?
     
@@ -23,7 +23,7 @@ class Post {
         self.poster = poster
         self.posterID = posterID
         self.content = content
-        self.postData = postDate
+        self.postDate = postDate
         self.retweetCount = String(retweetCount)
         self.favouriteCount = String(favouriteCount)
         self.imageURL = imageURL
