@@ -38,7 +38,8 @@ class HomeViewController: UIViewController {
     }
     
     @objc func getTimelinePosts(_ refreshControl: UIRefreshControl? = nil) {
-        TwitterAPICaller.client?.fetchUserTimeline(for: self, { (posts) in
+        let count = refreshControl != nil ? 20 : self.posts.count + 20
+        TwitterAPICaller.client?.fetchUserTimeline(for: self, count: count, { (posts) in
             self.posts = posts
             DispatchQueue.main.async {
                 self.postsTableView.reloadData()
@@ -46,6 +47,7 @@ class HomeViewController: UIViewController {
             }
         })
     }
+    
     
     @IBAction func didPressLogoutButton(_ sender: UIBarButtonItem) {
         TwitterAPICaller.client?.logout()
@@ -102,5 +104,9 @@ extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row + 10 == self.posts.count {self.getTimelinePosts()}
     }
 }

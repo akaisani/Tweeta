@@ -41,4 +41,20 @@ class Post {
     }
     
     
+    
+    convenience init?(postDictionary: [String: Any]) {
+        guard let retweetCount = postDictionary["retweet_count"] as? Int, let postDate = postDictionary["created_at"] as? String, let content = postDictionary["text"] as? String, let favouriteCount = postDictionary["favorite_count"] as? Int else {
+            return nil
+        }
+        guard let userDictionary = postDictionary["user"] as? [String: Any] else {
+            return nil
+        }
+        guard let poster = userDictionary["name"] as? String, let posterID = userDictionary["screen_name"] as? String, let posterImageURL = userDictionary["profile_image_url_https"] as? String else {
+            return nil
+        }
+        
+        self.init(poster: poster, posterID: posterID, content: content, postDate: postDate, retweetCount: retweetCount, favouriteCount: favouriteCount, imageURL: posterImageURL)
+    }
+    
+    
 }
