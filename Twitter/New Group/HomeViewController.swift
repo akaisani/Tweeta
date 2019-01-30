@@ -108,6 +108,12 @@ extension HomeViewController: UITableViewDataSource {
         cell.favouriteCountLabel.text = post.favouriteCount
         cell.posterProfileImageView.image = post.posterImage
         
+        let navBarColor = self.navigationController?.navigationBar.tintColor
+        cell.posterProfileImageView.layer.borderColor = navBarColor?.cgColor
+        cell.posterProfileImageView.layer.cornerRadius = cell.posterProfileImageView.frame.height / 2
+        cell.posterProfileImageView.clipsToBounds = true
+        cell.posterProfileImageView.layer.borderWidth = 2
+        
         return cell
     }
     

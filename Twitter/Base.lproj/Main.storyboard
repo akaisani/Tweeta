@@ -138,13 +138,14 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="NCs-5o-jQs">
                                                             <rect key="frame" x="0.0" y="0.0" width="75.5" height="25"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reply-icon" translatesAutoresizingMaskIntoConstraints="NO" id="wdv-Zn-R6z">
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WLK-3q-6K2">
                                                                     <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="25" id="5cX-BB-r5T"/>
-                                                                        <constraint firstAttribute="width" constant="25" id="tt4-n6-2MR"/>
+                                                                        <constraint firstAttribute="height" constant="25" id="6o4-WW-35c"/>
+                                                                        <constraint firstAttribute="width" constant="25" id="PWR-qH-Ban"/>
                                                                     </constraints>
-                                                                </imageView>
+                                                                    <state key="normal" title="Button" image="reply-icon"/>
+                                                                </button>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reply" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zsT-mj-SZR">
                                                                     <rect key="frame" x="33" y="0.0" width="42.5" height="25"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -156,13 +157,14 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="VOO-eE-AES">
                                                             <rect key="frame" x="83.5" y="0.0" width="75.5" height="25"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="retweet-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Qet-5x-joE">
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GLS-Vy-Pnv">
                                                                     <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="25" id="uYX-XW-nje"/>
-                                                                        <constraint firstAttribute="width" constant="25" id="xg3-h8-Rij"/>
+                                                                        <constraint firstAttribute="width" constant="25" id="Dib-E7-GbE"/>
+                                                                        <constraint firstAttribute="height" constant="25" id="pCG-hC-xxy"/>
                                                                     </constraints>
-                                                                </imageView>
+                                                                    <state key="normal" title="Button" image="retweet-icon"/>
+                                                                </button>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reply" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T6X-Wb-Jtq">
                                                                     <rect key="frame" x="33" y="0.0" width="42.5" height="25"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -174,13 +176,16 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8F7-HP-hO1">
                                                             <rect key="frame" x="167" y="0.0" width="75.5" height="25"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="favor-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Dmt-h4-X60">
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ov-JS-I66">
                                                                     <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="25" id="1Ed-0P-SMO"/>
-                                                                        <constraint firstAttribute="width" constant="25" id="De9-Dl-ZHU"/>
+                                                                        <constraint firstAttribute="width" constant="25" id="CM2-Cm-a8Z"/>
+                                                                        <constraint firstAttribute="height" constant="25" id="afU-kg-7U0"/>
                                                                     </constraints>
-                                                                </imageView>
+                                                                    <state key="normal" image="favor-icon"/>
+                                                                    <state key="selected" image="favor-icon-red"/>
+                                                                    <state key="highlighted" image="favor-icon-red"/>
+                                                                </button>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reply" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TyZ-jR-fMT">
                                                                     <rect key="frame" x="33" y="0.0" width="42.5" height="25"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -307,6 +312,7 @@
         <image name="TwitterLogoBlue" width="400" height="400"/>
         <image name="edit-icon" width="30" height="27"/>
         <image name="favor-icon" width="30" height="30"/>
+        <image name="favor-icon-red" width="30" height="30"/>
         <image name="reply-icon" width="30" height="30"/>
         <image name="retweet-icon" width="30" height="30"/>
     </resources>
