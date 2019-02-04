@@ -19,6 +19,7 @@
 		A8B5AB6321FFC8FF0062E73C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5AB6221FFC8FF0062E73C /* LoginViewController.swift */; };
 		A8B5AB6621FFCC490062E73C /* AlertControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5AB6521FFCC490062E73C /* AlertControllerHelper.swift */; };
 		A8B5AB6821FFCE880062E73C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B5AB6721FFCE880062E73C /* HomeViewController.swift */; };
+		A8C9F1BF2209009300278729 /* ComposeTweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C9F1BE2209009300278729 /* ComposeTweetViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		A8B5AB6221FFC8FF0062E73C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A8B5AB6521FFCC490062E73C /* AlertControllerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertControllerHelper.swift; sourceTree = "<group>"; };
 		A8B5AB6721FFCE880062E73C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		A8C9F1BE2209009300278729 /* ComposeTweetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeTweetViewController.swift; sourceTree = "<group>"; };
 		C2D685C92646819A9A0DC30C /* Pods-Twitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twitter.release.xcconfig"; path = "Pods/Target Support Files/Pods-Twitter/Pods-Twitter.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,6 +101,7 @@
 		A8B5AB6421FFC9040062E73C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A8C9F1BE2209009300278729 /* ComposeTweetViewController.swift */,
 				A8B5AB6721FFCE880062E73C /* HomeViewController.swift */,
 				A844366522000C5900F095DB /* Post.swift */,
 				A8B5AB6221FFC8FF0062E73C /* LoginViewController.swift */,
@@ -231,6 +234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8C9F1BF2209009300278729 /* ComposeTweetViewController.swift in Sources */,
 				A8443668220014EA00F095DB /* PostCell.swift in Sources */,
 				A8659433220259F2003789BE /* DateHelper.swift in Sources */,
 				A8B5AB6821FFCE880062E73C /* HomeViewController.swift in Sources */,
