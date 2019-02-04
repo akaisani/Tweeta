@@ -20,7 +20,7 @@ The following **bonus** features are implemented:
 - [X] User can load past tweets infinitely. (2pts)
 - [X] Updated Post cell to better immitate the twitter apps cells.
 
-//Here's a walkthrough of implemented user stories:
+Here's a walkthrough of implemented user stories:
 
 <img src='Twitter.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
