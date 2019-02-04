@@ -18,11 +18,9 @@ The following **bonus** features are implemented:
 
 - [X] User can pull to refresh. (1pt)
 - [X] User can load past tweets infinitely. (2pts)
-
-<!---## Video Walkthrough
+- [X] Updated Post cell to better immitate the twitter apps cells.
 
 //Here's a walkthrough of implemented user stories:
 
-//<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='Twitter.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
----> 
