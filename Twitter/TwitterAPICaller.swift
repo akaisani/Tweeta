@@ -72,7 +72,6 @@ class TwitterAPICaller: BDBOAuth1SessionManager {
                 return
             }
             for postDictionary in postDictionaries {
-                
                 guard let post = Post(postDictionary: postDictionary) else {
                     AlertControllerHelper.presentAlert(for: viewController, withTitle: "Error", withMessage: "Error parsing post data")
                     return
@@ -95,6 +94,35 @@ class TwitterAPICaller: BDBOAuth1SessionManager {
         }, failure: { (error) in
             AlertControllerHelper.presentAlert(for: viewController, withTitle: "Error", withMessage: error.localizedDescription)
         })
+    }
+    
+    func postTweet(withText tweetString: String, completion: @escaping (_ success: Bool, _ errorString: String?) -> ()) {
+        let url = "https://api.twitter.com/1.1/statuses/update.json"
+        self.post(url, parameters: ["status": tweetString], progress: nil, success: { (session, response) in
+            completion(true, nil)
+        }) { (session, error) in
+            completion(false, error.localizedDescription)
+        }
+    }
+    
+    
+    func setTweetFavourite(withID id: String, postState isFavourited: Bool, success: @escaping (_ success: Bool, _ errorString: String?) -> ()) {
+        let url = isFavourited ? "https://api.twitter.com/1.1/favorites/destroy.json" : "https://api.twitter.com/1.1/favorites/create.json"
+        self.post(url, parameters: ["id": id], progress: nil, success: { (task, response) in
+            success(true, nil)
+        }) { (task, error) in
+            success(false, error.localizedDescription)
+        }
+    }
+    
+    
+    func setRetweeted(withID id: String, postState isRetweeted: Bool, success: @escaping (_ success: Bool, _ errorString: String?) -> ()) {
+        let url = isRetweeted ? "https://api.twitter.com/1.1/statuses/unretweet/\(id).json" : "https://api.twitter.com/1.1/statuses/retweet/\(id).json"
+        self.post(url, parameters: ["id": id], progress: nil, success: { (task, response) in
+            success(true, nil)
+        }) { (task, error) in
+            success(false, error.localizedDescription)
+        }
     }
     
 }

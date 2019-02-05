@@ -56,6 +56,10 @@ class HomeViewController: UIViewController {
     }
     
     
+ 
+    
+    
+    
     @IBAction func unwindToHome(_ segue: UIStoryboardSegue) {}
     
     
@@ -68,6 +72,16 @@ class HomeViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func configureCell(_ cell: PostCell, with post: Post) {
+        cell.favouriteCountLabel.text = post.favouriteCountLabel
+        var image = post.favourited ? UIImage(named: "favor-icon-red") : UIImage(named: "favor-icon")
+        cell.favouritedButton.setImage(image, for: UIControl.State.normal)
+        
+        cell.retweetCountLabel.text = post.retweetCountLabel
+        image = post.retweeted ? UIImage(named: "retweet-icon-green") : UIImage(named: "retweet-icon")
+        cell.retweetButton.setImage(image, for: UIControl.State.normal)
+    }
 
 }
 
@@ -80,21 +94,15 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! PostCell
         let post = self.posts[indexPath.row]
-        
+        cell.delegate = self
         cell.posterNameLabel.text = post.poster
         cell.posterIDLabel.text = post.posterID
         cell.postDataLabel.text = DateHelper.timeSincePost(for: post.postDate)
         cell.postContentLabel.text = post.content
-        cell.retweetCountLabel.text = post.retweetCount
-        cell.favouriteCountLabel.text = post.favouriteCount
         cell.posterProfileImageView.image = post.posterImage
-        
-        let navBarColor = self.navigationController?.navigationBar.tintColor
-        cell.posterProfileImageView.layer.borderColor = navBarColor?.cgColor
-        cell.posterProfileImageView.layer.cornerRadius = cell.posterProfileImageView.frame.height / 2
-        cell.posterProfileImageView.clipsToBounds = true
-        cell.posterProfileImageView.layer.borderWidth = 2
-        
+        let navBarColor = self.navigationController?.navigationBar.tintColor.cgColor
+        cell.cellColor = navBarColor
+        configureCell(cell, with: post)
         return cell
     }
     
@@ -113,4 +121,37 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row + 10 == self.posts.count {self.getTimelinePosts()}
     }
+}
+
+extension HomeViewController: PostCellDelegate {
+    func didTapFavouriteButton(_ favouriteButton: UIButton, on cell: PostCell) {
+        guard let indexPath = self.postsTableView.indexPath(for: cell) else {return}
+        let post = self.posts[indexPath.row]
+        TwitterAPICaller.client?.setTweetFavourite(withID: post.id, postState: post.favourited, success: { (success, errorString) in
+            if !success {
+                AlertControllerHelper.presentAlert(for: self, withTitle: "Error!", withMessage: errorString!)
+                return
+            }
+            post.favourited = !post.favourited
+            let postUpdate = post.favourited ? +1 : -1
+            post.favouriteCount = post.favouriteCount + postUpdate
+            self.configureCell(cell, with: post)
+        })
+    }
+    
+    func didTapRetweetButton(_ favouriteButton: UIButton, on cell: PostCell) {
+        guard let indexPath = self.postsTableView.indexPath(for: cell) else {return}
+        let post = self.posts[indexPath.row]
+        TwitterAPICaller.client?.setRetweeted(withID: post.id, postState: post.retweeted, success: { (success, errorString) in
+            if !success {
+                AlertControllerHelper.presentAlert(for: self, withTitle: "Error!", withMessage: errorString!)
+                return
+            }
+            post.retweeted = !post.retweeted
+            let postUpdate = post.retweeted ? +1 : -1
+            post.retweetCount = post.retweetCount + postUpdate
+            self.configureCell(cell, with: post)
+        })
+    }
+    
 }

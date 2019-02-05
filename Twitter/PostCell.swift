@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol PostCellDelegate {
+    func didTapFavouriteButton(_ favouriteButton: UIButton, on cell: PostCell);
+    func didTapRetweetButton(_ favouriteButton: UIButton, on cell: PostCell);
+}
+
 class PostCell: UITableViewCell {
 
     @IBOutlet weak var posterNameLabel: UILabel!
@@ -17,5 +22,28 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var postContentLabel: UILabel!
     @IBOutlet weak var retweetCountLabel: UILabel!
     @IBOutlet weak var favouriteCountLabel: UILabel!
-
+    @IBOutlet weak var retweetButton: UIButton!
+    @IBOutlet weak var favouritedButton: UIButton!
+    var cellColor: CGColor!
+    var delegate: PostCellDelegate!
+    
+    
+    override func awakeFromNib() {
+        self.posterProfileImageView.layer.borderColor = cellColor ?? UIColor.white.cgColor
+        self.posterProfileImageView.layer.cornerRadius = self.posterProfileImageView.frame.height / 2
+        self.posterProfileImageView.clipsToBounds = true
+        self.posterProfileImageView.layer.borderWidth = 3
+    }
+    
+    @IBAction func favouriteButtonPressed(_ sender: UIButton) {
+        delegate.didTapFavouriteButton(sender, on: self)
+    }
+    
+    
+    @IBAction func retweetButtonPressed(_ sender: UIButton) {
+        delegate.didTapRetweetButton(sender, on: self)
+    }
+    
+    
+    
 }

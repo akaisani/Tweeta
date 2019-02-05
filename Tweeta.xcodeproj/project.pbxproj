@@ -88,6 +88,7 @@
 				6EBCF52921DF07FC00451C03 /* Main.storyboard */,
 				A8443667220014EA00F095DB /* PostCell.swift */,
 				A8659432220259F2003789BE /* DateHelper.swift */,
+				A844366522000C5900F095DB /* Post.swift */,
 				A8B5AB6421FFC9040062E73C /* View Controllers */,
 				6EBCF54321E047A500451C03 /* TwitterAPICaller.swift */,
 				6EBCF52521DF07FC00451C03 /* AppDelegate.swift */,
@@ -103,7 +104,6 @@
 			children = (
 				A8C9F1BE2209009300278729 /* ComposeTweetViewController.swift */,
 				A8B5AB6721FFCE880062E73C /* HomeViewController.swift */,
-				A844366522000C5900F095DB /* Post.swift */,
 				A8B5AB6221FFC8FF0062E73C /* LoginViewController.swift */,
 			);
 			name = "View Controllers";
