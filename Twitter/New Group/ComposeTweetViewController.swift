@@ -23,7 +23,7 @@ class ComposeTweetViewController: UIViewController {
         self.postTweetButton.layer.borderColor = UIColor.white.cgColor
         self.postTweetButton.layer.borderWidth = 2
         self.postTweetButton.layer.cornerRadius = self.postTweetButton.bounds.height / 2
-        
+        self.tweetTextView.delegate = self
         self.tweetTextView.becomeFirstResponder()
         
     }
@@ -72,10 +72,16 @@ class ComposeTweetViewController: UIViewController {
 extension ComposeTweetViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         if textView.text.count <= 0  {
-            self.characterCountLabel.text = "0"
+            self.characterCountLabel.text = "140"
             return
         }
         //
-        self.characterCountLabel.text = "\(textView.text.count)"
+        self.characterCountLabel.text = "\(140 - textView.text.count)"
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+        let numberOfChars = newText.count
+        return numberOfChars <= 140
     }
 }
