@@ -14,7 +14,8 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var postsTableView: UITableView!
     var posts: [Post] = [Post]()
-    
+    var activityIndicator: UIActivityIndicatorView!
+
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -30,6 +31,9 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        // ui activity indicator
+        self.startSpinner()
+        
         // adding uirefreshcontrol
         self.postsTableView.addSubview(self.refreshControl)
         
@@ -44,6 +48,7 @@ class HomeViewController: UIViewController {
             DispatchQueue.main.async {
                 self.postsTableView.reloadData()
                 self.refreshControl.endRefreshing()
+                self.stopSpinner()
             }
         })
     }
@@ -55,23 +60,7 @@ class HomeViewController: UIViewController {
         self.performSegue(withIdentifier: "userLoggedOut", sender: self)
     }
     
-    
- 
-    
-    
-    
     @IBAction func unwindToHome(_ segue: UIStoryboardSegue) {}
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     func configureCell(_ cell: PostCell, with post: Post) {
         cell.favouriteCountLabel.text = post.favouriteCountLabel
@@ -81,6 +70,25 @@ class HomeViewController: UIViewController {
         cell.retweetCountLabel.text = post.retweetCountLabel
         image = post.retweeted ? UIImage(named: "retweet-icon-green") : UIImage(named: "retweet-icon")
         cell.retweetButton.setImage(image, for: UIControl.State.normal)
+    }
+    
+    // MARK: - UIActivityIndicator Setup
+    func startSpinner() {
+        activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
+        activityIndicator.style = UIActivityIndicatorView.Style.whiteLarge
+        activityIndicator.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
+        activityIndicator.center = self.view.center
+        activityIndicator.startAnimating()
+        let navBarColor = self.navigationController?.navigationBar.tintColor
+        activityIndicator.color = navBarColor!
+        UIApplication.shared.beginIgnoringInteractionEvents()
+    }
+    
+    func stopSpinner() {
+        activityIndicator.stopAnimating()
+        UIApplication.shared.endIgnoringInteractionEvents()
     }
 
 }

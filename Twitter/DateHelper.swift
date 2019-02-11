@@ -12,7 +12,7 @@ struct DateHelper {
     static func timeSincePost(for postDateString: String) -> String{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EE MMM dd HH:mm:ss Z yyyy" //Your date format
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00") //Current time zone
+//        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00") //Current time zone
         //        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
         guard let date = dateFormatter.date(from:postDateString) else {return postDateString}
         let calendar = Calendar.current
