@@ -27,8 +27,8 @@ class PostCell: UITableViewCell {
     var cellColor: CGColor!
     var delegate: PostCellDelegate!
     
-    
-    override func awakeFromNib() {
+    @IBOutlet weak var tweetImageView: UIImageView!
+    override func draw(_ rect: CGRect) {
         self.posterProfileImageView.layer.borderColor = cellColor ?? UIColor.white.cgColor
         self.posterProfileImageView.layer.cornerRadius = self.posterProfileImageView.frame.height / 2
         self.posterProfileImageView.clipsToBounds = true

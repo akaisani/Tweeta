@@ -102,7 +102,10 @@ extension HomeViewController: UITableViewDataSource {
         cell.posterProfileImageView.image = post.posterImage
         let navBarColor = self.navigationController?.navigationBar.tintColor.cgColor
         cell.cellColor = navBarColor
+        
         configureCell(cell, with: post)
+        
+    
         return cell
     }
     
