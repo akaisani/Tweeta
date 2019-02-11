@@ -327,7 +327,7 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                                 <state key="normal" title="Tweet">
-                                                    <color key="titleColor" red="0.20539060235023499" green="0.46996092796325684" blue="0.96475261449813843" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="postTweetButtonPressed:" destination="guk-Sy-upe" eventType="touchUpInside" id="mVq-qT-cwj"/>
